@@ -1,11 +1,20 @@
+'use client';
 import Link from 'next/link';
-import { Colors } from '@/theme/Colors';
+import LoaderLayout from '../../layout/LoaderLayout/LoaderLayout';
+import styled from 'styled-components';
+
+const PageContent = styled.div`
+  opacity: 0;
+`;
 
 export default function Home() {
   return (
     <main>
-      <Link href="history/">Histoire</Link>
-      <div className="font-bold p-4">Coucou</div>
+      <LoaderLayout />
+      <PageContent>
+        <Link href="history/">Histoire</Link>
+        <div>Coucou</div>
+      </PageContent>
     </main>
   );
 }
