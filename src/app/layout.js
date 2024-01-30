@@ -1,7 +1,7 @@
 import './reset.css';
 import './reset.css';
 import './globals.css';
-import LoaderLayout from '../../layout/LoaderLayout/LoaderLayout';
+import StyledComponentsRegistry from '../../lib/registry';
 
 export const metadata = {
   title: 'Muletopia Festival',
@@ -13,7 +13,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body>
-        <main>{children}</main>
+        <StyledComponentsRegistry>
+          <main>{children}</main>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
