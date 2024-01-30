@@ -7,7 +7,8 @@ import { SlowMo } from 'gsap/dist/EasePack';
 import { Colors } from '@/theme/Colors';
 import Image from 'next/image';
 import { CustomEase } from 'gsap/CustomEase';
-gsap.registerPlugin(useGSAP, SlowMo, CustomEase);
+gsap.registerPlugin(useGSAP, SlowMo);
+gsap.registerPlugin(CustomEase);
 
 const BoxAnimation = styled.div`
   position: absolute;
@@ -130,84 +131,87 @@ const ContianerTitle = styled.div`
   }
 `;
 const LoaderLayout = () => {
-  const containerCamera = useRef();
-  const containerYellow = useRef();
-  const containerCoupe = useRef();
-  const containerCiseaux = useRef();
-  const containerBook = useRef();
-  const containerDollars = useRef();
-  const containerTickets = useRef();
-  const firstDivRefTitle = useRef();
-  const secondDivRefTitle = useRef();
   CustomEase.create('custom', 'M0,0 C0.85,0 0.2,1 1,1');
+  const refs = {
+    yellowContainerRef: useRef(),
+    cameraRef: useRef(),
+    bookRef: useRef(),
+    coupeRef: useRef(),
+    ciseauxRef: useRef(),
+    dollarsRef: useRef(),
+    ticketsRef: useRef(),
+    firstTitleLogoRef: useRef(),
+    secondTitleLogoRef: useRef(),
+  };
+
   useGSAP(
     (context, contextSafe) => {
-      gsap.to(containerYellow.current, {
+      gsap.to(refs.yellowContainerRef.current, {
         top: '0%',
         duration: 1.5,
         ease: 'custom',
       });
-      gsap.to(containerCamera.current, {
+      gsap.to(refs.cameraRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
         delay: 1,
       });
-      gsap.to(containerBook.current, {
+      gsap.to(refs.bookRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
         delay: 1.2,
       });
-      gsap.to(containerTickets.current, {
+      gsap.to(refs.ticketsRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
         delay: 1.2,
       });
-      gsap.to(containerCoupe.current, {
+      gsap.to(refs.coupeRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
         delay: 0.8,
       });
-      gsap.to(containerCiseaux.current, {
+      gsap.to(refs.ciseauxRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'expo.inOut',
         delay: 0.6,
       });
-      gsap.to(containerDollars.current, {
+      gsap.to(refs.dollarsRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
         delay: 0.6,
       });
-      gsap.to(firstDivRefTitle.current, {
+      gsap.to(refs.firstTitleLogoRef.current, {
         bottom: '0',
         duration: 1.5,
         ease: 'expo.inOut',
         delay: 0.4,
       });
-      gsap.to(secondDivRefTitle.current, {
+      gsap.to(refs.secondTitleLogoRef.current, {
         bottom: '0',
         duration: 1.5,
         ease: 'expo.inOut',
         delay: 0.6,
       });
-      gsap.to(containerYellow.current, {
+      gsap.to(refs.yellowContainerRef.current, {
         top: '100%',
         duration: 1.5,
         ease: 'expo.inOut',
         delay: 2.3,
       });
     },
-    { scope: containerYellow }
+    { scope: refs.yellowContainerRef }
   );
 
   return (
     <BoxAnimation>
-      <ContainerYellow ref={containerYellow}>
+      <ContainerYellow ref={refs.yellowContainerRef}>
         <ContainerLogo>
           <ContainerMullet>
             <Image
@@ -219,14 +223,14 @@ const LoaderLayout = () => {
           </ContainerMullet>
           <ContianerTitle>
             <div>
-              <h2 ref={firstDivRefTitle}>Muletopia</h2>
+              <h2 ref={refs.firstTitleLogoRef}>Muletopia</h2>
             </div>
             <div>
-              <h2 ref={secondDivRefTitle}>Festival</h2>
+              <h2 ref={refs.secondTitleLogoRef}>Festival</h2>
             </div>
           </ContianerTitle>
         </ContainerLogo>
-        <ContainerTickets ref={containerTickets}>
+        <ContainerTickets ref={refs.ticketsRef}>
           <Image
             src={'/images/tickets.png'}
             width={469}
@@ -234,7 +238,7 @@ const LoaderLayout = () => {
             alt={'tickets'}
           />
         </ContainerTickets>
-        <ContainerCamera ref={containerCamera}>
+        <ContainerCamera ref={refs.cameraRef}>
           <Image
             src={'/images/appareil-photo.png'}
             width={556}
@@ -242,7 +246,7 @@ const LoaderLayout = () => {
             alt={'logo'}
           />
         </ContainerCamera>
-        <ContainerBook ref={containerBook}>
+        <ContainerBook ref={refs.bookRef}>
           <Image
             src={'/images/book.png'}
             width={468}
@@ -250,7 +254,7 @@ const LoaderLayout = () => {
             alt={'logo'}
           />
         </ContainerBook>
-        <ContainerCoupe ref={containerCoupe}>
+        <ContainerCoupe ref={refs.coupeRef}>
           <Image
             src={'/images/coupe.png'}
             width={557}
@@ -258,7 +262,7 @@ const LoaderLayout = () => {
             alt={'logo'}
           />
         </ContainerCoupe>
-        <ContainerCiseaux ref={containerCiseaux}>
+        <ContainerCiseaux ref={refs.ciseauxRef}>
           <Image
             src={'/images/ciseaux.png'}
             width={549}
@@ -266,7 +270,7 @@ const LoaderLayout = () => {
             alt={'logo'}
           />
         </ContainerCiseaux>
-        <ContainerDollars ref={containerDollars}>
+        <ContainerDollars ref={refs.dollarsRef}>
           <Image
             src={'/images/dollars.png'}
             width={549}
