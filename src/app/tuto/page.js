@@ -1,9 +1,3 @@
-
 export default function Tuto() {
-    return (
-      <main>
-        Tuto
-      </main>
-    );
-  }
-  
+  return <main>Tuto</main>;
+}

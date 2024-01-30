@@ -1,9 +1,3 @@
-
 export default function History() {
-    return (
-      <main>
-        History
-      </main>
-    );
-  }
-  
+  return <main>History</main>;
+}

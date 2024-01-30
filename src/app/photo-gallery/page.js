@@ -1,9 +1,3 @@
-
 export default function Gallery() {
-    return (
-      <main>
-        Gallery
-      </main>
-    );
-  }
-  
+  return <main>Gallery</main>;
+}

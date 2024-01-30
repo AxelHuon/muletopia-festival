@@ -1,4 +1,5 @@
-import Link from "next/link";
+import Link from 'next/link';
+import { Colors } from '@/theme/Colors';
 
 export default function Home() {
   return (
