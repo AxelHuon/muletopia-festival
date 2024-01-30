@@ -1,9 +1,3 @@
-
 export default function Contest() {
-    return (
-      <main>
-        Contest
-      </main>
-    );
-  }
-  
+  return <main>Contest</main>;
+}

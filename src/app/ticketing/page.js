@@ -1,9 +1,3 @@
-
 export default function Ticketing() {
-    return (
-      <main>
-        Ticketing
-      </main>
-    );
-  }
-  
+  return <main>Ticketing</main>;
+}
