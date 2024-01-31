@@ -37,7 +37,9 @@ export default function Home() {
 
   return (
     <main className="w-full bg-primary">
+      {/*
       <LoaderLayout />
+*/}
       <PageContent>
         <Home1 />
         <Home2 />
