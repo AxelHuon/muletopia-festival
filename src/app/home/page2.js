@@ -72,7 +72,7 @@ export default function Home2() {
     });
   });
   return (
-    <div className="flex h-[110vh] pt-20 w-full bg-home_2 bg-repeat bg-cover relative flex-col items-center justify-center">
+    <div className="flex h-[110vh] pt-20 w-full bg-home_2 overflow-hidden bg-repeat bg-cover relative flex-col items-center justify-center">
       <div className="flex items-center justify-center gap-20">
         <div className="relative joke-bubble opacity-0">
           <div className="relative w-[700px] h-[250px] flex items-center justify-center">

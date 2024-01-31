@@ -17,7 +17,7 @@ const BoxAnimation = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  z-index: 100;
+  z-index: 9999999;
 `;
 
 const ContainerYellow = styled.div`
@@ -54,7 +54,7 @@ const ContainerCamera = styled.div`
   justify-content: center;
   position: absolute;
   left: 20%;
-  top: -20%;
+  top: -30%;
   transform: translate(-50%, -50%);
 `;
 const ContainerBook = styled.div`
@@ -71,6 +71,9 @@ const ContainerCoupe = styled.div`
   left: 50%;
   top: -50%;
   transform: translate(-50%, -50%);
+  img {
+    width: 80%;
+  }
 `;
 const ContainerTickets = styled.div`
   display: flex;
@@ -80,6 +83,9 @@ const ContainerTickets = styled.div`
   left: 40%;
   top: -60%;
   transform: translate(-50%, -50%);
+  img {
+    width: 80%;
+  }
 `;
 
 const ContainerCiseaux = styled.div`

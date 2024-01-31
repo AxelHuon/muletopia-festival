@@ -38,8 +38,9 @@ export default function Home1() {
         style={{
           width: '300px',
           position: 'absolute',
-          top: '20px',
-          left: '20px',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
         }}
       />
 
@@ -52,13 +53,13 @@ export default function Home1() {
           style={{
             width: '200px',
             position: 'absolute',
-            top: '280px',
-            left: '240px',
+            top: '50%',
+            left: '28%',
+            transform: 'translate(-50%, -50%) rotate(-15deg)',
           }}
         />
       </Link>
-
-      <div className="home-title hidden absolute top-[200px] left-[350px] h-[100px] w-[200px] flex items-center justify-center z-30">
+      <div className="home-title hidden absolute h-[100px] translate-x-5 translate-y-5 w-[200px] left-[28%] top-[17%] flex items-center justify-center z-30">
         <Image
           src={bubbleImg}
           alt="bubble-shop"
@@ -79,13 +80,14 @@ export default function Home1() {
           style={{
             width: '200px',
             position: 'absolute',
-            top: '70px',
-            left: '350px',
+            top: '40%',
+            left: '35%',
+            transform: 'translate(-50%, -50%)',
           }}
         />
       </Link>
 
-      <div className="home-title hidden absolute top-[150px] left-[480px] h-[100px] w-[200px] flex items-center justify-center z-30">
+      <div className="home-title hidden absolute translate-x-5 translate-y-5 left-[35%] top-[10%] h-[100px] w-[200px] flex items-center justify-center z-30">
         <Image
           src={bubbleImg}
           alt="tuto-bubble"
@@ -106,13 +108,14 @@ export default function Home1() {
           style={{
             width: '300px',
             position: 'absolute',
-            top: '280px',
-            left: '450px',
+            top: '50%',
+            left: '43%',
+            transform: 'translate(-50%, -50%) rotate(-10deg)',
           }}
         />
       </Link>
 
-      <div className="home-title hidden absolute top-[180px] left-[650px] h-[100px] w-[250px] flex items-center justify-center z-30">
+      <div className="home-title hidden absolute translate-x-5 translate-y-5 left-[45%] top-[22%] h-[100px] w-[250px] flex items-center justify-center z-30">
         <Image
           src={bubbleImg}
           alt="photo-gallery-bubble"
@@ -122,7 +125,9 @@ export default function Home1() {
             position: 'absolute',
           }}
         />
-        <p className="absolute text-4xl font-tanker top-5">PHOTO GALLERY</p>
+        <p className="absolute text-4xl font-tanker top-5 uppercase">
+          PHOTO GALLERY
+        </p>
       </div>
 
       <Link href="contest/" className="home-link">
@@ -133,13 +138,14 @@ export default function Home1() {
           style={{
             width: '350px',
             position: 'absolute',
-            top: '50px',
-            left: '650px',
+            top: '40%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
           }}
         />
       </Link>
 
-      <div className="home-title hidden absolute top-[150px] left-[900px] h-[100px] w-[200px] flex items-center justify-center z-30">
+      <div className="home-title hidden absolute translate-x-5 translate-y-5 left-[59%] top-[1%] h-[100px] w-[200px] flex items-center justify-center z-30">
         <Image
           src={bubbleImg}
           alt="contest-bubble"
@@ -161,13 +167,14 @@ export default function Home1() {
             width: '250px',
             height: 'auto',
             position: 'absolute',
-            top: '300px',
-            left: '800px',
+            top: '50%',
+            left: '57%',
+            transform: 'translate(-50%, -50%)',
           }}
         />
       </Link>
 
-      <div className="home-title hidden absolute top-[220px] left-[970px] h-[100px] w-[200px] flex items-center justify-center z-30">
+      <div className="home-title hidden absolute translate-x-5 translate-y-5 left-[60%] top-[20%] h-[100px] w-[200px] flex items-center justify-center z-30">
         <Image
           src={bubbleImg}
           alt="ticketing-bubble"
@@ -189,13 +196,14 @@ export default function Home1() {
             width: '350px',
             height: 'auto',
             position: 'absolute',
-            top: '300px',
-            left: '950px',
+            top: '55%',
+            left: '65%',
+            transform: 'translate(-50%, -50%)',
           }}
         />
       </Link>
 
-      <div className="home-title hidden absolute top-[250px] left-[1200px] h-[100px] w-[200px] flex items-center justify-center z-30">
+      <div className="home-title hidden absolute translate-x-5 translate-y-5 left-[70%] top-[30%] h-[100px] w-[200px] flex items-center justify-center z-30">
         <Image
           src={bubbleImg}
           alt="history-bubble"
