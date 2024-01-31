@@ -62,7 +62,7 @@ const ContainerBook = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  right: 10%;
+  right: 20%;
   top: -20%;
   transform: translate(-50%, -50%);
 `;
@@ -72,7 +72,7 @@ const ContainerCoupe = styled.div`
   top: -50%;
   transform: translate(-50%, -50%);
   img {
-    width: 80%;
+    width: 60%;
   }
 `;
 const ContainerTickets = styled.div`
@@ -93,7 +93,7 @@ const ContainerCiseaux = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  left: 75%;
+  right: 5%;
   top: -60%;
   transform: translate(-50%, -50%);
 `;
@@ -163,54 +163,52 @@ const LoaderLayout = () => {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
-        delay: 1,
+        delay: 0.4,
       });
       gsap.to(refs.bookRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
-        delay: 1.2,
+        delay: 0.6,
       });
       gsap.to(refs.ticketsRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
-        delay: 1.2,
+        delay: 0.5,
       });
       gsap.to(refs.coupeRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
-        delay: 0.8,
+        delay: 0.4,
       });
       gsap.to(refs.ciseauxRef.current, {
         top: '90%',
         duration: 1.5,
-        ease: 'expo.inOut',
-        delay: 0.6,
+        ease: 'bounce.out',
+        delay: 0.5,
       });
       gsap.to(refs.dollarsRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
-        delay: 0.6,
+        delay: 0.2,
       });
       gsap.to(refs.firstTitleLogoRef.current, {
         bottom: '0',
-        duration: 1.5,
-        ease: 'expo.inOut',
-        delay: 0.4,
+        duration: 1.2,
+        ease: 'custom',
       });
       gsap.to(refs.secondTitleLogoRef.current, {
         bottom: '0',
-        duration: 1.5,
-        ease: 'expo.inOut',
-        delay: 0.6,
+        duration: 1.2,
+        ease: 'custom',
       });
       gsap.to(refs.boxAnimation.current, {
         top: '-130%',
         duration: 1.5,
-        ease: 'expo.inOut',
+        ease: 'custom',
         delay: 2.3,
       });
     },
