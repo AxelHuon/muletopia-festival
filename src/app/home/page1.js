@@ -20,7 +20,6 @@ export default function Home1() {
   useEffect(() => {
     // Show title of links
     const links = document.querySelectorAll('.home-link');
-    console.log(links);
     links.forEach((link) => {
       link.addEventListener('mouseover', () => {
         link.nextElementSibling.classList.remove('hidden');
@@ -35,6 +34,7 @@ export default function Home1() {
       {/* Logo */}
       <Image
         src={logoImg}
+        alt="muletopia-festival-logo"
         style={{
           width: '300px',
           position: 'absolute',
@@ -47,6 +47,7 @@ export default function Home1() {
       <Link href="shop/" className="home-link">
         <Image
           src={dollarImg}
+          alt="shop"
           className="hover:scale-110 hover:-hue-rotate-60 transition -rotate-12"
           style={{
             width: '200px',
@@ -60,6 +61,7 @@ export default function Home1() {
       <div className="home-title hidden absolute top-[200px] left-[350px] h-[100px] w-[200px] flex items-center justify-center z-30">
         <Image
           src={bubbleImg}
+          alt="bubble-shop"
           style={{
             height: '100%',
             width: '100%',
@@ -72,6 +74,7 @@ export default function Home1() {
       <Link href="tuto/" className="home-link">
         <Image
           src={scissorImg}
+          alt="tuto"
           className="hover:scale-110 transition z-20"
           style={{
             width: '200px',
@@ -85,6 +88,7 @@ export default function Home1() {
       <div className="home-title hidden absolute top-[150px] left-[480px] h-[100px] w-[200px] flex items-center justify-center z-30">
         <Image
           src={bubbleImg}
+          alt="tuto-bubble"
           style={{
             height: '100%',
             width: '100%',
@@ -97,6 +101,7 @@ export default function Home1() {
       <Link href="photo-gallery/" className="home-link">
         <Image
           src={cameraImg}
+          alt="photo-gallery"
           className="hover:scale-110 hover:-hue-rotate-60 transition -rotate-12 z-10"
           style={{
             width: '300px',
@@ -110,6 +115,7 @@ export default function Home1() {
       <div className="home-title hidden absolute top-[180px] left-[650px] h-[100px] w-[250px] flex items-center justify-center z-30">
         <Image
           src={bubbleImg}
+          alt="photo-gallery-bubble"
           style={{
             height: '100%',
             width: '100%',
@@ -122,6 +128,7 @@ export default function Home1() {
       <Link href="contest/" className="home-link">
         <Image
           src={coupeImg}
+          alt="contest"
           className="hover:scale-110 transition hover:-hue-rotate-60"
           style={{
             width: '350px',
@@ -135,6 +142,7 @@ export default function Home1() {
       <div className="home-title hidden absolute top-[150px] left-[900px] h-[100px] w-[200px] flex items-center justify-center z-30">
         <Image
           src={bubbleImg}
+          alt="contest-bubble"
           style={{
             height: '100%',
             width: '100%',
@@ -147,9 +155,11 @@ export default function Home1() {
       <Link href="ticketing/" className="home-link">
         <Image
           src={ticketsImg}
+          alt="ticketing"
           className="hover:scale-110 transition z-10"
           style={{
             width: '250px',
+            height: 'auto',
             position: 'absolute',
             top: '300px',
             left: '800px',
@@ -160,6 +170,7 @@ export default function Home1() {
       <div className="home-title hidden absolute top-[220px] left-[970px] h-[100px] w-[200px] flex items-center justify-center z-30">
         <Image
           src={bubbleImg}
+          alt="ticketing-bubble"
           style={{
             height: '100%',
             width: '100%',
@@ -172,9 +183,11 @@ export default function Home1() {
       <Link href="history/" className="home-link">
         <Image
           src={livreImg}
+          alt="history"
           className="hover:scale-110 hover:-hue-rotate-30 transition"
           style={{
             width: '350px',
+            height: 'auto',
             position: 'absolute',
             top: '300px',
             left: '950px',
@@ -185,6 +198,7 @@ export default function Home1() {
       <div className="home-title hidden absolute top-[250px] left-[1200px] h-[100px] w-[200px] flex items-center justify-center z-30">
         <Image
           src={bubbleImg}
+          alt="history-bubble"
           style={{
             height: '100%',
             width: '100%',
@@ -197,6 +211,7 @@ export default function Home1() {
       {/* SHAPES */}
       <Image
         src={musicShape}
+        alt="music-shape"
         className="floating"
         style={{
           position: 'absolute',
@@ -207,10 +222,12 @@ export default function Home1() {
 
       <Image
         src={puffShape}
+        alt="puff-shape"
         className="floating"
         style={{
           position: 'absolute',
           width: '150px',
+          height: 'auto',
           top: '150px',
           left: '950px',
         }}
@@ -218,10 +235,12 @@ export default function Home1() {
 
       <Image
         src={swingShape}
+        alt="swing-shape"
         className="floating"
         style={{
           position: 'absolute',
           width: '150px',
+          height: 'auto',
           top: '250px',
           left: '0px',
         }}
@@ -229,10 +248,12 @@ export default function Home1() {
 
       <Image
         src={ziczacShape}
+        alt="ziczac-shape"
         className="floating"
         style={{
           position: 'absolute',
           width: '200px',
+          height: 'auto',
           top: '50px',
           left: '500px',
         }}
@@ -240,10 +261,12 @@ export default function Home1() {
 
       <Image
         src={fluwuShape}
+        alt="fluwu-shape"
         className="floating"
         style={{
           position: 'absolute',
           width: '150px',
+          height: 'auto',
           bottom: '80px',
           right: '30px',
         }}

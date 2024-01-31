@@ -76,6 +76,7 @@ export default function Home3() {
             <Link href="shop/">
               <Image
                 src={teeshirt1Img}
+                alt="tshirt"
                 style={{
                   minWidth: '350px',
                   width: '350px',
@@ -85,6 +86,7 @@ export default function Home3() {
             <div className="absolute -top-5 left-0 h-[80px] w-[150px] flex items-center justify-center z-30 -rotate-12">
               <Image
                 src={bubblePriceImg}
+                alt="bubble-price"
                 style={{
                   height: '100%',
                   width: '100%',
@@ -97,6 +99,7 @@ export default function Home3() {
             </div>
             <Image
               src={anneauxImg}
+              alt="ring-shape"
               className="floating3"
               style={{
                 width: '150px',
@@ -110,6 +113,7 @@ export default function Home3() {
             <Link href="shop/">
               <Image
                 src={teeshirt2Img}
+                alt="tshirt"
                 style={{
                   minWidth: '350px',
                   width: '350px',
@@ -119,6 +123,7 @@ export default function Home3() {
             <div className="absolute bottom-0 left-0 h-[80px] w-[150px] flex items-center justify-center z-30 rotate-[30deg]">
               <Image
                 src={bubblePriceImg}
+                alt="bubble-price"
                 style={{
                   height: '100%',
                   width: '100%',
@@ -131,6 +136,7 @@ export default function Home3() {
             </div>
             <Image
               src={galaxyImg}
+              alt="galaxy-shape"
               className="floating3"
               style={{
                 width: '150px',
@@ -144,6 +150,7 @@ export default function Home3() {
             <Link href="shop/">
               <Image
                 src={teeshirt3Img}
+                alt="tshirt"
                 style={{
                   minWidth: '350px',
                   width: '350px',
@@ -153,6 +160,7 @@ export default function Home3() {
             <div className="absolute top-4 -right-10 h-[80px] w-[150px] flex items-center justify-center z-30 rotate-12">
               <Image
                 src={bubblePriceImg}
+                alt="bubble-price"
                 style={{
                   height: '100%',
                   width: '100%',
@@ -165,6 +173,7 @@ export default function Home3() {
             </div>
             <Image
               src={eclairImg}
+              alt="eclair-shape"
               className="floating3"
               style={{
                 width: '80px',
