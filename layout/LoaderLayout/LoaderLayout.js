@@ -17,6 +17,7 @@ const BoxAnimation = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  z-index: 100;
 `;
 
 const ContainerYellow = styled.div`

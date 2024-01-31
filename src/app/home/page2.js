@@ -86,7 +86,7 @@ export default function Home2() {
             />
             <p className="absolute text-4xl text-text_black font-tanker -mt-10 px-20">
               Hey, tu as entendu parler de la coupe mulet qui a gagné un
-              concours?
+              concours ?
             </p>
           </div>
           <Image
@@ -141,7 +141,7 @@ export default function Home2() {
               }}
             />
             <p className="absolute text-4xl text-text_black font-tanker -mt-10 px-20">
-              Non, quelle coupe mulet?
+              Non, quelle coupe mulet ?
             </p>
           </div>
         </div>
@@ -160,7 +160,7 @@ export default function Home2() {
             />
             <p className="absolute text-4xl text-text_black font-tanker -mt-10 px-20">
               Celle qui était bien partie derrière, mais qui a fini par
-              remporter le prix devant!
+              remporter le prix devant !
             </p>
           </div>
           <Image

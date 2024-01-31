@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import Home1 from './home/page1';
 import Home3 from './home/page3';
 import Home2 from './home/page2';
+import LoaderLayout from '../../layout/LoaderLayout/LoaderLayout';
 
 const PageContent = styled.div`
   opacity: 1;
@@ -36,7 +37,7 @@ export default function Home() {
 
   return (
     <main className="w-full bg-primary">
-      {/* <LoaderLayout /> */}
+      <LoaderLayout />
       <PageContent>
         <Home1 />
         <Home2 />
