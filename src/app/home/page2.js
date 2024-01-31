@@ -78,6 +78,7 @@ export default function Home2() {
           <div className="relative w-[700px] h-[250px] flex items-center justify-center">
             <Image
               src={bubble2Img}
+              alt="bubble-shape"
               style={{
                 width: '100%',
                 height: '100%',
@@ -91,6 +92,7 @@ export default function Home2() {
           </div>
           <Image
             src={doubleSwingShape}
+            alt="double-swing-shape"
             className="floating2"
             style={{
               width: '150px',
@@ -113,6 +115,7 @@ export default function Home2() {
           <div className="relative bottom-[-150px] left-[500px]">
             <Image
               src={mouthImg}
+              alt="mouth"
               className="floating2"
               style={{
                 width: '300px',
@@ -121,6 +124,7 @@ export default function Home2() {
             />
             <Image
               src={trianglesShape}
+              alt="triangles-shape"
               className="floating2"
               style={{
                 width: '130px',
@@ -133,6 +137,7 @@ export default function Home2() {
           <div className="relative w-[700px] h-[220px] flex items-center justify-center">
             <Image
               src={bubble1Img}
+              alt="bubble-shape"
               style={{
                 minWidth: '350px',
                 width: '500px',
@@ -152,6 +157,7 @@ export default function Home2() {
           <div className="relative w-[700px] h-[250px] flex items-center justify-center">
             <Image
               src={bubble2Img}
+              alt="bubble-shape"
               style={{
                 minWidth: '350px',
                 width: '100%',
@@ -165,6 +171,7 @@ export default function Home2() {
           </div>
           <Image
             src={fluwuHeartShape}
+            alt="fluwu-heart-shape"
             className="floating2"
             style={{
               width: '150px',
