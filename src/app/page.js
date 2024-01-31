@@ -6,12 +6,22 @@ import Home1 from './home/home1';
 import Home2 from './home/home2';
 import Home3 from './home/home3';
 import LoaderLayout from '../../layout/LoaderLayout/LoaderLayout';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { useGSAP } from '@gsap/react';
 
+gsap.registerPlugin(ScrollSmoother);
 const PageContent = styled.div`
   opacity: 1;
 `;
 
 export default function Home() {
+  useGSAP((context, contextSafe) => {
+    ScrollSmoother.create({
+      smooth: 1,
+      effects: true,
+      smoothTouch: 0.1,
+    });
+  });
   useEffect(() => {
     // Float animation shape
     const floatings = document.querySelectorAll('.floating');

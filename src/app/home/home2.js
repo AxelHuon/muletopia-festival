@@ -1,76 +1,88 @@
 import React, { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import Image from 'next/image';
-
+import { SplitText } from 'gsap/SplitText';
 import bubble1Img from '../../../public/images/home/bubble-joke.png';
 import bubble2Img from '../../../public/images/home/bubble-home.png';
 import doubleSwingShape from '../../../public/images/home/shape-double-swing.png';
 import fluwuHeartShape from '../../../public/images/home/shape-fluwu-heart.png';
 import trianglesShape from '../../../public/images/home/shape-triangles.png';
 import mouthImg from '../../../public/images/home/mouth.svg';
+import { useGSAP } from '@gsap/react';
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(SplitText);
+gsap.registerPlugin(ScrollSmoother);
 
 export default function Home2() {
-  useEffect(() => {
-    const titles = document.querySelectorAll('.joke-text');
-    const bubbles = document.querySelectorAll('.joke-bubble');
-
-    gsap.registerPlugin(ScrollTrigger);
-    let tl = gsap.timeline();
-
-    ScrollTrigger.create({
-      trigger: titles[0],
-      start: 'top 80%',
-      end: 'bottom center',
-      // markers: true,
-      onEnter: () => {
-        tl.to(titles[0], {
-          opacity: 1,
-          duration: 0.5,
-          x: 0,
-        })
-          .to(titles[1], {
+  useGSAP(
+    () => {
+      const titles = document.querySelectorAll('.joke-text');
+      const bubbles = document.querySelectorAll('.joke-bubble');
+      const title1Split = new SplitText(titles[0], { type: 'chars' });
+      const title2Split = new SplitText(titles[1], { type: 'chars' });
+      gsap.set([...title1Split.chars, ...title2Split.chars], {
+        opacity: 0,
+        y: 50,
+      });
+      ScrollTrigger.create({
+        trigger: titles[0],
+        start: 'top 80%',
+        end: 'bottom center',
+        once: true,
+        onEnter: () => {
+          gsap.to(title1Split.chars, {
             opacity: 1,
-            duration: 0.5,
-            x: 0,
-          })
-          .to(bubbles[0], {
-            delay: 0.5,
-            opacity: 1,
-            duration: 0.5,
-            scale: '1.05',
-          })
-          .to(bubbles[0], {
-            delay: 0.2,
-            ease: 'power.inOut',
-            scale: '1',
-            duration: 0.2,
-          })
-          .to(bubbles[1], {
-            opacity: 1,
-            duration: 0.5,
-            scale: '1.05',
-          })
-          .to(bubbles[1], {
-            delay: 0.2,
-            ease: 'power.inOut',
-            scale: '1',
-            duration: 0.2,
-          })
-          .to(bubbles[2], {
-            opacity: 1,
-            duration: 0.5,
-            scale: '1.05',
-          })
-          .to(bubbles[2], {
-            delay: 0.2,
-            ease: 'power.inOut',
-            scale: '1',
-            duration: 0.2,
+            y: 0,
+            duration: 2,
+            ease: 'back',
+            stagger: 0.1,
+            delay: 0.4,
           });
-      },
-    });
-  });
+          gsap.to(title2Split.chars, {
+            opacity: 1,
+            y: 0,
+            duration: 2,
+            ease: 'back',
+            stagger: 0.1,
+            delay: 0.7,
+          });
+          gsap.fromTo(
+            bubbles[0],
+            { opacity: 0 },
+            {
+              opacity: 1,
+              duration: 0.5,
+              scale: '1.05',
+              delay: 0.5,
+            }
+          );
+          gsap.fromTo(
+            bubbles[1],
+            { opacity: 0 },
+            {
+              opacity: 1,
+              duration: 0.5,
+              scale: '1.05',
+              delay: 1,
+            }
+          );
+          gsap.fromTo(
+            bubbles[2],
+            { opacity: 0 },
+            {
+              opacity: 1,
+              duration: 0.5,
+              scale: '1.05',
+              delay: 1.5,
+            }
+          );
+        },
+      });
+    },
+    { scope: '.joke-text' }
+  );
   return (
     <div className="flex h-[110vh] pt-20 w-full bg-home_2 overflow-hidden bg-repeat bg-cover relative flex-col items-center justify-center">
       <div className="flex items-center justify-center gap-20">
@@ -102,13 +114,13 @@ export default function Home2() {
             }}
           />
         </div>
-        <p className="text-9xl text-white font-tanker joke-text opacity-0 translate-x-8 mb-10">
+        <p className="text-9xl text-white font-tanker joke-text mb-10">
           A LIttle
         </p>
       </div>
 
       <div className="flex items-center justify-center gap-20">
-        <p className="text-9xl text-white font-tanker joke-text opacity-0 -translate-x-8 mb-10">
+        <p className="text-9xl text-white font-tanker joke-text mb-10">
           JOKE ?
         </p>
         <div className="relative joke-bubble opacity-0">
