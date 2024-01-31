@@ -30,7 +30,7 @@ export default function Home1() {
     });
   });
   return (
-    <div className="flex h-[100vh] w-full bg-home bg-repeat bg-cover">
+    <div className="flex relative h-[100vh] w-full bg-home bg-repeat bg-cover">
       {/* Logo */}
       <Image
         src={logoImg}
