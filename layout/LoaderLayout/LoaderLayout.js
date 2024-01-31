@@ -11,11 +11,11 @@ gsap.registerPlugin(useGSAP, SlowMo);
 gsap.registerPlugin(CustomEase);
 
 const BoxAnimation = styled.div`
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
 `;
 
@@ -26,7 +26,7 @@ const ContainerYellow = styled.div`
   width: 100%;
   position: absolute;
   height: 100%;
-  top: -100%;
+  top: 0;
   z-index: 9999;
   background: ${Colors.primaryColor};
 `;
@@ -133,6 +133,7 @@ const ContianerTitle = styled.div`
 const LoaderLayout = () => {
   CustomEase.create('custom', 'M0,0 C0.85,0 0.2,1 1,1');
   const refs = {
+    boxAnimation: useRef(),
     yellowContainerRef: useRef(),
     cameraRef: useRef(),
     bookRef: useRef(),
@@ -199,8 +200,8 @@ const LoaderLayout = () => {
         ease: 'expo.inOut',
         delay: 0.6,
       });
-      gsap.to(refs.yellowContainerRef.current, {
-        top: '100%',
+      gsap.to(refs.boxAnimation.current, {
+        top: '-130%',
         duration: 1.5,
         ease: 'expo.inOut',
         delay: 2.3,
@@ -210,7 +211,7 @@ const LoaderLayout = () => {
   );
 
   return (
-    <BoxAnimation>
+    <BoxAnimation ref={refs.boxAnimation}>
       <ContainerYellow ref={refs.yellowContainerRef}>
         <ContainerLogo>
           <ContainerMullet>
