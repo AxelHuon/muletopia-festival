@@ -3,9 +3,7 @@ import Link from 'next/link';
 import LoaderLayout from '../../layout/LoaderLayout/LoaderLayout';
 import styled from 'styled-components';
 
-const PageContent = styled.div`
-  opacity: 0;
-`;
+const PageContent = styled.div``;
 
 export default function Home() {
   return (
