@@ -2,9 +2,9 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import gsap from 'gsap';
-import Home1 from './home/page1';
-import Home3 from './home/page3';
-import Home2 from './home/page2';
+import Home1 from './home/home1';
+import Home2 from './home/home2';
+import Home3 from './home/home3';
 import LoaderLayout from '../../layout/LoaderLayout/LoaderLayout';
 
 const PageContent = styled.div`
