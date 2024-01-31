@@ -1,20 +1,19 @@
 'use client';
-import Link from 'next/link';
-import LoaderLayout from '../../layout/LoaderLayout/LoaderLayout';
 import styled from 'styled-components';
+import Link from 'next/link';
 
-const PageContent = styled.div`
-  opacity: 0;
-`;
+const PageContent = styled.div``;
 
-export default function Home() {
+const Home = () => {
   return (
-    <main>
-      <LoaderLayout />
+    <section>
+      {/*      <LoaderLayout />*/}
       <PageContent>
-        <Link href="history/">Histoire</Link>
+        <Link href={'/contest'}>contest</Link>
         <div>Coucou</div>
       </PageContent>
-    </main>
+    </section>
   );
-}
+};
+
+export default Home;

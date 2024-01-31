@@ -7,6 +7,7 @@ import { SlowMo } from 'gsap/dist/EasePack';
 import { Colors } from '@/theme/Colors';
 import Image from 'next/image';
 import { CustomEase } from 'gsap/CustomEase';
+
 gsap.registerPlugin(useGSAP, SlowMo);
 gsap.registerPlugin(CustomEase);
 
@@ -15,7 +16,7 @@ const BoxAnimation = styled.div`
   left: 0;
   top: 0;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
 `;
 
@@ -26,7 +27,7 @@ const ContainerYellow = styled.div`
   width: 100%;
   position: absolute;
   height: 100%;
-  top: -100%;
+  top: 0%;
   z-index: 9999;
   background: ${Colors.primaryColor};
 `;
@@ -133,6 +134,7 @@ const ContianerTitle = styled.div`
 const LoaderLayout = () => {
   CustomEase.create('custom', 'M0,0 C0.85,0 0.2,1 1,1');
   const refs = {
+    boxAnimationRef: useRef(),
     yellowContainerRef: useRef(),
     cameraRef: useRef(),
     bookRef: useRef(),
@@ -146,46 +148,41 @@ const LoaderLayout = () => {
 
   useGSAP(
     (context, contextSafe) => {
-      gsap.to(refs.yellowContainerRef.current, {
-        top: '0%',
-        duration: 1.5,
-        ease: 'custom',
-      });
       gsap.to(refs.cameraRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
-        delay: 1,
+        delay: 0.4,
       });
       gsap.to(refs.bookRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
-        delay: 1.2,
+        delay: 0.4,
       });
       gsap.to(refs.ticketsRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
-        delay: 1.2,
+        delay: 0.4,
       });
       gsap.to(refs.coupeRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
-        delay: 0.8,
+        delay: 0.4,
       });
       gsap.to(refs.ciseauxRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'expo.inOut',
-        delay: 0.6,
+        delay: 0.4,
       });
       gsap.to(refs.dollarsRef.current, {
         top: '90%',
         duration: 1.5,
         ease: 'bounce.out',
-        delay: 0.6,
+        delay: 0.4,
       });
       gsap.to(refs.firstTitleLogoRef.current, {
         bottom: '0',
@@ -197,25 +194,22 @@ const LoaderLayout = () => {
         bottom: '0',
         duration: 1.5,
         ease: 'expo.inOut',
-        delay: 0.6,
-      });
-      gsap.to(refs.yellowContainerRef.current, {
-        top: '100%',
-        duration: 1.5,
-        ease: 'expo.inOut',
-        delay: 2.3,
+        delay: 0.4,
       });
     },
     { scope: refs.yellowContainerRef }
   );
 
   return (
-    <BoxAnimation>
+    <BoxAnimation ref={refs.boxAnimationRef}>
       <ContainerYellow ref={refs.yellowContainerRef}>
         <ContainerLogo>
           <ContainerMullet>
             <Image
+              priority={true}
+              placeholder={'blur'}
               src={'/logos/mullet-black.svg'}
+              blurDataURL={'/logos/mullet-black.svg'}
               width={577}
               height={200}
               alt={'logo'}
