@@ -38,8 +38,8 @@ export default function Home1() {
         style={{
           width: '300px',
           position: 'absolute',
-          top: '50%',
-          left: '50%',
+          top: '10%',
+          left: '10%',
           transform: 'translate(-50%, -50%)',
         }}
       />
