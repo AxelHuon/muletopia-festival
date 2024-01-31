@@ -77,6 +77,7 @@ const Ticket = styled.div`
   position: relative;
   flex-direction: column;
   justify-content: center;
+  transition: transform 0.1s;
   `;
 
 const Ticket1 = styled(Ticket)`
@@ -172,6 +173,30 @@ export default function Ticketing() {
     shape1: useRef(),
     shape2: useRef(),
   };
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left; //x position within the element.
+    const y = e.clientY - rect.top;  //y position within the element.
+
+    gsap.to(e.currentTarget, {
+      x: (x - rect.width / 2) / 20, // Divide by a larger number for a smaller parallax effect
+      y: (y - rect.height / 2) / 20, // Divide by a larger number for a smaller parallax effect
+      scale: 1.01,
+      duration: 0,
+      ease: 'power4.inOut',
+    });
+  };
+
+  const handleMouseLeave = (e) => {
+    gsap.to(e.currentTarget, {
+      x: 0,
+      y: 0,
+      scale: 1,
+      duration: 0,
+      ease: 'power1.in',
+    });
+  };
+
   useGSAP((context, contextSafe) => {
         const tl = gsap.timeline();
 
@@ -203,7 +228,7 @@ export default function Ticketing() {
       </SvgContainer>
 
       <TicketContainer>
-        <Ticket1 ref={refs.ticket1}>
+        <Ticket1 ref={refs.ticket1} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           <Title>1 day
           </Title>
           <Date>
@@ -216,7 +241,7 @@ export default function Ticketing() {
           <Shape1 ref={refs.shape1} src='/images/spin-1.svg' alt='spin' width={120} height={120}/>
         </Ticket1>
 
-        <Ticket2 ref={refs.ticket2}>
+        <Ticket2 ref={refs.ticket2} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           <Title>2 days
           </Title>
           <Date>
@@ -227,7 +252,7 @@ export default function Ticketing() {
             <p>50$</p>
           </Price>
         </Ticket2>
-        <Ticket3 ref={refs.ticket3}>
+        <Ticket3 ref={refs.ticket3} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           <Title> All days
           </Title>
           <Date>
