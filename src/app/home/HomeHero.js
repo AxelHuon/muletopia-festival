@@ -58,7 +58,7 @@ export default function HomeHero() {
   );
 
   return (
-    <div className=" container-global flex relative h-[100vh] w-full bg-home bg-repeat bg-cover pb-6">
+    <div className=" container-global flex relative h-[100vh] w-full overflow-hidden bg-home bg-repeat bg-cover pb-6">
       {/* Logo */}
       <Image
         src={logoImg}
@@ -75,6 +75,7 @@ export default function HomeHero() {
       {/* Img links */}
       <Link href="shop/" ref={image1} className="home-link">
         <Image
+          data-speed="0.7"
           src={dollarImg}
           alt="shop"
           className="hover:scale-110 hover:-hue-rotate-60 transition -rotate-12"
@@ -102,6 +103,7 @@ export default function HomeHero() {
 
       <Link href="/tuto" className="home-link">
         <Image
+          data-speed="0.3"
           src={scissorImg}
           alt="tuto"
           className="hover:scale-110 transition z-20"
@@ -130,6 +132,7 @@ export default function HomeHero() {
 
       <Link href="/get-your-mullet" className="home-link">
         <Image
+          data-speed="0.1"
           src={cameraImg}
           alt="photo-gallery"
           className="hover:scale-110 hover:-hue-rotate-60 transition -rotate-12 z-10"
@@ -158,6 +161,7 @@ export default function HomeHero() {
 
       <Link href="" className="home-link">
         <Image
+          data-speed="0.2"
           src={coupeImg}
           alt="contest"
           className="hover:scale-110 transition hover:-hue-rotate-60"
@@ -186,6 +190,7 @@ export default function HomeHero() {
 
       <Link href="ticketing/" className="home-link">
         <Image
+          data-speed="0.4"
           src={ticketsImg}
           alt="ticketing"
           className="hover:scale-110 transition z-10"
@@ -215,6 +220,7 @@ export default function HomeHero() {
 
       <Link href="history/" className="home-link">
         <Image
+          data-speed="0.2"
           src={livreImg}
           alt="history"
           className="hover:scale-110 hover:-hue-rotate-30 transition"
