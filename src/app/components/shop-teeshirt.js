@@ -1,11 +1,10 @@
-import Image from 'next/image';
-
 import React, { useEffect } from 'react';
 import gsap from 'gsap';
 import TextPlugin from 'gsap/TextPlugin';
+import Image from 'next/image';
 import bubblePriceImg from '../../../public/images/home/bubble-home.png';
 
-export default function shopTeeshirt(props) {
+const ShopTeeshirt = (props) => {
   useEffect(() => {
     const teeshirtsImg = document.querySelectorAll('.teeshirt');
 
@@ -37,7 +36,7 @@ export default function shopTeeshirt(props) {
         });
       });
     });
-  });
+  }, []);
 
   return (
     <div className="teeshirt relative opacity-0 hover:scale-110 transition">
@@ -65,4 +64,6 @@ export default function shopTeeshirt(props) {
       </div>
     </div>
   );
-}
+};
+
+export default ShopTeeshirt;
