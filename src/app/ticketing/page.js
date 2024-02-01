@@ -6,6 +6,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useRef } from 'react';
+import Return from '../components/return';
 
 const BackgroundContainer = styled.div`
   background-image: url('/images/background.svg');
@@ -222,118 +223,115 @@ export default function TicketingPage() {
   });
 
   return (
-    <main>
-      <BackgroundContainer>
-        <NavigationLink href="/">Return</NavigationLink>
+    <BackgroundContainer>
+      <Return />
+      <OverlayContainer>
+        <FloatingDot ref={refs.leftDot} position="left">
+          <Image
+            src="/images/eye-dot.png"
+            alt="eye-dot"
+            width={350}
+            height={250}
+          />
+        </FloatingDot>
+        <FloatingDot ref={refs.centerDot} position="center">
+          <Image
+            src="/images/face-dot.png"
+            alt="face-dot"
+            width={350}
+            height={250}
+          />
+        </FloatingDot>
+        <FloatingDot ref={refs.rightDot} position="right">
+          <Image
+            src="/images/ear-dot.png"
+            alt="ear-dot"
+            width={250}
+            height={250}
+          />
+        </FloatingDot>
+      </OverlayContainer>
 
-        <OverlayContainer>
-          <FloatingDot ref={refs.leftDot} position="left">
+      <TicketShowcase>
+        <Ticket
+          ref={refs.ticket1}
+          bgImage="/images/ticket-1.svg"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
+          <TextSection size="large">1 day</TextSection>
+          <TextSection size="small">Friday, Saturday, or Sunday</TextSection>
+          <Price>
             <Image
-              src="/images/eye-dot.png"
-              alt="eye-dot"
-              width={350}
-              height={250}
-            />
-          </FloatingDot>
-          <FloatingDot ref={refs.centerDot} position="center">
-            <Image
-              src="/images/face-dot.png"
-              alt="face-dot"
-              width={350}
-              height={250}
-            />
-          </FloatingDot>
-          <FloatingDot ref={refs.rightDot} position="right">
-            <Image
-              src="/images/ear-dot.png"
-              alt="ear-dot"
+              src="/images/ticket-price.svg"
+              alt="ticket-price"
               width={250}
               height={250}
             />
-          </FloatingDot>
-        </OverlayContainer>
+            <p>35$</p>
+          </Price>
+          <RotatingShape
+            ref={refs.shape1}
+            src="/images/spin-1.svg"
+            alt="spin"
+            width={120}
+            height={120}
+            top="100%"
+            left="0"
+            transform="translate(-50%, -100%)"
+          />
+        </Ticket>
 
-        <TicketShowcase>
-          <Ticket
-            ref={refs.ticket1}
-            bgImage="/images/ticket-1.svg"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-          >
-            <TextSection size="large">1 day</TextSection>
-            <TextSection size="small">Friday, Saturday, or Sunday</TextSection>
-            <Price>
-              <Image
-                src="/images/ticket-price.svg"
-                alt="ticket-price"
-                width={250}
-                height={250}
-              />
-              <p>35$</p>
-            </Price>
-            <RotatingShape
-              ref={refs.shape1}
-              src="/images/spin-1.svg"
-              alt="spin"
-              width={120}
-              height={120}
-              top="100%"
-              left="0"
-              transform="translate(-50%, -100%)"
+        <Ticket
+          ref={refs.ticket2}
+          bgImage="/images/ticket-2.svg"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
+          <TextSection size="large">2 days</TextSection>
+          <TextSection size="small">
+            Friday and Saturday or Saturday and Sunday
+          </TextSection>
+          <Price>
+            <Image
+              src="/images/ticket-price.svg"
+              alt="ticket-price"
+              width={250}
+              height={250}
             />
-          </Ticket>
+            <p>50$</p>
+          </Price>
+        </Ticket>
 
-          <Ticket
-            ref={refs.ticket2}
-            bgImage="/images/ticket-2.svg"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-          >
-            <TextSection size="large">2 days</TextSection>
-            <TextSection size="small">
-              Friday and Saturday or Saturday and Sunday
-            </TextSection>
-            <Price>
-              <Image
-                src="/images/ticket-price.svg"
-                alt="ticket-price"
-                width={250}
-                height={250}
-              />
-              <p>50$</p>
-            </Price>
-          </Ticket>
-
-          <Ticket
-            ref={refs.ticket3}
-            bgImage="/images/ticket-3.svg"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-          >
-            <TextSection size="large">All days</TextSection>
-            <TextSection size="small">All days for you, man!</TextSection>
-            <Price>
-              <Image
-                src="/images/ticket-price.svg"
-                alt="ticket-price"
-                width={250}
-                height={250}
-              />
-              <p>75$</p>
-            </Price>
-            <RotatingShape
-              ref={refs.shape2}
-              src="/images/star-1.svg"
-              alt="spin"
-              width={100}
-              height={100}
-              top="0"
-              left="100%"
-              transform="translate(-75%, -40%)"
+        <Ticket
+          ref={refs.ticket3}
+          bgImage="/images/ticket-3.svg"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
+          <TextSection size="large">All days</TextSection>
+          <TextSection size="small">All days for you, man!</TextSection>
+          <Price>
+            <Image
+              src="/images/ticket-price.svg"
+              alt="ticket-price"
+              width={250}
+              height={250}
             />
-          </Ticket>
-        </TicketShowcase>
-      </BackgroundContainer>
-    </main>
+            <p>75$</p>
+          </Price>
+          <RotatingShape
+            ref={refs.shape2}
+            src="/images/star-1.svg"
+            alt="spin"
+            width={100}
+            height={100}
+            top="0"
+            left="100%"
+            transform="translate(-75%, -40%)"
+          />
+        </Ticket>
+      </TicketShowcase>
+    </BackgroundContainer>
   );
 }
