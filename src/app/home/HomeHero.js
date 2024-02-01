@@ -68,7 +68,7 @@ export default function HomeHero() {
           position: 'absolute',
           top: '10%',
           left: '10%',
-          transform: 'translate(-50%, -50%)',
+          transform: 'translate(-40%, -50%)',
         }}
       />
 
