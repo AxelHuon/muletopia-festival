@@ -5,12 +5,6 @@ import Link from 'next/link';
 import backToHome from '../../../public/images/return-button-tuto.png';
 
 const ButtonTuto = () => {
-  // const router = useRouter();
-
-  // const handleReturn = () => {
-  //   router.push('/'); // Redirige vers la page d'accueil
-  // };
-
   return (
     <div>
       <div style={{ cursor: 'pointer' }}>
