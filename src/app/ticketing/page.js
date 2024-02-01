@@ -1,13 +1,13 @@
 'use client';
 import Link from 'next/link';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Colors } from '@/theme/Colors';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useRef } from 'react';
 
-const PageContent = styled.div`
+const BackgroundContainer = styled.div`
   background-image: url('/images/background.svg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -19,34 +19,37 @@ const PageContent = styled.div`
   position: relative;
 `;
 
-const EyeDot = styled.div`
+const FloatingDot = styled.div`
   position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translate(0, -50%);
   pointer-events: none;
   z-index: 0;
+  ${({ position }) => {
+    switch (position) {
+      case 'left':
+        return css`
+          top: 50%;
+          left: 0;
+          transform: translate(0, -50%);
+        `;
+      case 'center':
+        return css`
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, 0);
+          z-index: 2;
+        `;
+      case 'right':
+        return css`
+          top: 100%;
+          right: 0;
+          transform: translate(0, -100%);
+          z-index: 2;
+        `;
+    }
+  }}
 `;
 
-const FaceDot = styled.div`
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
-  pointer-events: none;
-  z-index: 2;
-`;
-
-const EarDot = styled.div`
-  position: absolute;
-  top: 100%;
-  right: 0;
-  transform: translate(0, -100%);
-  pointer-events: none;
-  z-index: 2;
-`;
-
-const SvgContainer = styled.div`
+const OverlayContainer = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -54,17 +57,17 @@ const SvgContainer = styled.div`
   top: 0;
 `;
 
-const TicketContainer = styled.div`
+const TicketShowcase = styled.div`
   display: flex;
   justify-content: center;
   gap: 5px;
   align-items: center;
   width: calc(100% - 160px);
   height: calc(100% - 100px);
-  margin: 50px 80px 0 80px;
+  margin: 50px 80px;
 `;
 
-const Ticket = styled.div`
+const ticketCommonStyles = css`
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -78,37 +81,22 @@ const Ticket = styled.div`
   transition: transform 0.1s;
 `;
 
-const Ticket1 = styled(Ticket)`
-  background-image: url('/images/ticket-1.svg');
-  ${Ticket}
+const Ticket = styled.div`
+  ${ticketCommonStyles}
+  background-image: ${({ bgImage }) => `url('${bgImage}')`};
 `;
 
-const Ticket2 = styled(Ticket)`
-  background-image: url('/images/ticket-2.svg');
-  ${Ticket}
-`;
-
-const Ticket3 = styled(Ticket)`
-  background-image: url('/images/ticket-3.svg');
-  ${Ticket}
-`;
-
-const Title = styled.p`
+const TextSection = styled.p`
   font-family: 'Tanker';
-  font-size: 70px;
   font-style: normal;
   font-weight: 400;
   color: ${Colors.black};
   text-align: center;
   margin-top: 20px;
-`;
-
-const Date = styled.p`
-  font-family: 'Tanker';
-  font-size: 20px;
-  font-weight: bold;
-  color: ${Colors.black};
-  text-align: center;
+  ${({ size }) =>
+    size === 'large'
+      ? 'font-size: 70px;'
+      : 'font-size: 20px; font-weight: bold;'}
 `;
 
 const Price = styled.div`
@@ -131,21 +119,16 @@ const Price = styled.div`
   }
 `;
 
-const Shape1 = styled.img`
+const RotatingShape = styled.img`
   position: absolute;
-  top: 100%;
-  left: 0;
-  transform: translate(-50%, -100%);
+  ${({ top, left, transform }) => css`
+    top: ${top};
+    left: ${left};
+    transform: ${transform};
+  `}
 `;
 
-const Shape2 = styled.img`
-  position: absolute;
-  top: 0;
-  left: 100%;
-  transform: translate(-75%, -40%);
-`;
-
-const ReturnLink = styled.a`
+const NavigationLink = styled(Link)`
   position: absolute;
   top: 20px;
   left: 40px;
@@ -157,25 +140,26 @@ const ReturnLink = styled.a`
   cursor: pointer;
 `;
 
-export default function Ticketing() {
+export default function TicketingPage() {
   const refs = {
-    eyeDotRef: useRef(),
-    faceDot: useRef(),
-    earDot: useRef(),
-    ticket1: useRef(),
-    ticket2: useRef(),
-    ticket3: useRef(),
-    shape1: useRef(),
-    shape2: useRef(),
+    leftDot: useRef(null),
+    centerDot: useRef(null),
+    rightDot: useRef(null),
+    ticket1: useRef(null),
+    ticket2: useRef(null),
+    ticket3: useRef(null),
+    shape1: useRef(null),
+    shape2: useRef(null),
   };
+
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left; //x position within the element.
-    const y = e.clientY - rect.top; //y position within the element.
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
     gsap.to(e.currentTarget, {
-      x: (x - rect.width / 2) / 20, // Divide by a larger number for a smaller parallax effect
-      y: (y - rect.height / 2) / 20, // Divide by a larger number for a smaller parallax effect
+      x: (x - rect.width / 2) / 20,
+      y: (y - rect.height / 2) / 20,
       scale: 1.01,
       duration: 0,
       ease: 'power4.inOut',
@@ -192,11 +176,10 @@ export default function Ticketing() {
     });
   };
 
-  useGSAP((context, contextSafe) => {
+  useGSAP(() => {
     const tl = gsap.timeline();
-
     tl.fromTo(
-      refs.eyeDotRef.current,
+      refs.leftDot.current,
       { scale: 6, x: -2000 },
       { scale: 1, x: 0, duration: 1, ease: 'power4.out' }
     )
@@ -207,26 +190,20 @@ export default function Ticketing() {
         '-=0.8'
       )
       .fromTo(
+        refs.centerDot.current,
+        { scale: 6, y: -1000 },
+        { scale: 1, y: 0, duration: 1, ease: 'power4.out' },
+        '-=0.4'
+      )
+      .fromTo(
         refs.ticket2.current,
         { y: '150%' },
         { y: '0%', duration: 1, ease: 'power1.inOut' },
         '-=0.6'
       )
       .fromTo(
-        refs.faceDot.current,
-        { scale: 6, y: -1000 },
-        { scale: 1, y: 0, duration: 1, ease: 'power4.out' },
-        '-=0.4'
-      )
-      .fromTo(
-        refs.ticket3.current,
-        { y: '150%' },
-        { y: '0%', duration: 1, ease: 'power1.inOut' },
-        '-=0.8'
-      )
-      .fromTo(
-        refs.earDot.current,
-        { scale: 6, y: +1000 },
+        refs.rightDot.current,
+        { scale: 6, y: 1000 },
         { scale: 1, y: '-100%', duration: 1, ease: 'power4.out' },
         '-=0.4'
       )
@@ -243,107 +220,120 @@ export default function Ticketing() {
         '-=1'
       );
   });
+
   return (
     <main>
-      <PageContent>
-        <ReturnLink href="/">Return</ReturnLink>
+      <BackgroundContainer>
+        <NavigationLink href="/">Return</NavigationLink>
 
-        <SvgContainer>
-          <EyeDot ref={refs.eyeDotRef}>
+        <OverlayContainer>
+          <FloatingDot ref={refs.leftDot} position="left">
             <Image
               src="/images/eye-dot.png"
               alt="eye-dot"
               width={350}
               height={250}
             />
-          </EyeDot>
-          <FaceDot ref={refs.faceDot}>
+          </FloatingDot>
+          <FloatingDot ref={refs.centerDot} position="center">
             <Image
               src="/images/face-dot.png"
               alt="face-dot"
               width={350}
               height={250}
             />
-          </FaceDot>
-          <EarDot ref={refs.earDot}>
+          </FloatingDot>
+          <FloatingDot ref={refs.rightDot} position="right">
             <Image
               src="/images/ear-dot.png"
               alt="ear-dot"
               width={250}
               height={250}
             />
-          </EarDot>
-        </SvgContainer>
+          </FloatingDot>
+        </OverlayContainer>
 
-        <TicketContainer>
-          <Ticket1
+        <TicketShowcase>
+          <Ticket
             ref={refs.ticket1}
+            bgImage="/images/ticket-1.svg"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
           >
-            <Title>1 day</Title>
-            <Date>Friday, saturday or sunday</Date>
+            <TextSection size="large">1 day</TextSection>
+            <TextSection size="small">Friday, Saturday, or Sunday</TextSection>
             <Price>
               <Image
                 src="/images/ticket-price.svg"
-                alt="ear-dot"
+                alt="ticket-price"
                 width={250}
                 height={250}
               />
               <p>35$</p>
             </Price>
-            <Shape1
+            <RotatingShape
               ref={refs.shape1}
               src="/images/spin-1.svg"
               alt="spin"
               width={120}
               height={120}
+              top="100%"
+              left="0"
+              transform="translate(-50%, -100%)"
             />
-          </Ticket1>
+          </Ticket>
 
-          <Ticket2
+          <Ticket
             ref={refs.ticket2}
+            bgImage="/images/ticket-2.svg"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
           >
-            <Title>2 days</Title>
-            <Date>Friday and saturday or saturday and sunday</Date>
+            <TextSection size="large">2 days</TextSection>
+            <TextSection size="small">
+              Friday and Saturday or Saturday and Sunday
+            </TextSection>
             <Price>
               <Image
                 src="/images/ticket-price.svg"
-                alt="ear-dot"
+                alt="ticket-price"
                 width={250}
                 height={250}
               />
               <p>50$</p>
             </Price>
-          </Ticket2>
-          <Ticket3
+          </Ticket>
+
+          <Ticket
             ref={refs.ticket3}
+            bgImage="/images/ticket-3.svg"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
           >
-            <Title> All days</Title>
-            <Date>All days for you, man !</Date>
+            <TextSection size="large">All days</TextSection>
+            <TextSection size="small">All days for you, man!</TextSection>
             <Price>
               <Image
                 src="/images/ticket-price.svg"
-                alt="ear-dot"
+                alt="ticket-price"
                 width={250}
                 height={250}
               />
               <p>75$</p>
             </Price>
-            <Shape2
+            <RotatingShape
               ref={refs.shape2}
               src="/images/star-1.svg"
               alt="spin"
               width={100}
               height={100}
+              top="0"
+              left="100%"
+              transform="translate(-75%, -40%)"
             />
-          </Ticket3>
-        </TicketContainer>
-      </PageContent>
+          </Ticket>
+        </TicketShowcase>
+      </BackgroundContainer>
     </main>
   );
 }

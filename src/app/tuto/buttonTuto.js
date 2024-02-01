@@ -2,11 +2,12 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import backToHome from '../../../public/images/return-button-tuto.png';
+import Link from 'next/link';
 
 const ButtonTuto = () => {
   return (
     <div>
-      <div style={{ cursor: 'pointer' }}>
+      <Link href={'/'}>
         <Image
           src={backToHome}
           alt="Flèche retour"
@@ -18,7 +19,7 @@ const ButtonTuto = () => {
             height: '100px',
           }}
         />
-      </div>
+      </Link>
     </div>
   );
 };

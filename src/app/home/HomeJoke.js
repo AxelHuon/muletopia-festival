@@ -13,7 +13,7 @@ import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 
-export default function Home2() {
+export default function HomeJoke() {
   const title1ref = useRef();
   const title2ref = useRef();
   const buble1 = useRef();

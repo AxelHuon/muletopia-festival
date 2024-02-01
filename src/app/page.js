@@ -2,9 +2,9 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import gsap from 'gsap';
-import Home1 from './home/home1';
-import Home2 from './home/home2';
-import Home3 from './home/home3';
+import HomeHero from './home/HomeHero';
+import HomeJoke from './home/HomeJoke';
+import HomeShop from './home/HomeShop';
 import LoaderLayout from '../../layout/LoaderLayout/LoaderLayout';
 
 const PageContent = styled.div`
@@ -39,9 +39,9 @@ export default function Home() {
     <main className="w-full bg-primary">
       <LoaderLayout />
       <PageContent>
-        <Home1 />
-        <Home2 />
-        <Home3 />
+        <HomeHero />
+        <HomeJoke />
+        <HomeShop />
       </PageContent>
     </main>
   );
