@@ -6,6 +6,9 @@ import Image from "next/image";
 import {useEffect, useRef} from "react";
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
+import React from "react";
+import { Player } from '@lottiefiles/react-lottie-player';
+import html2canvas from 'html2canvas';
 
 const PageContent = styled.div`
   background-image: url('/images/background.svg');
@@ -19,17 +22,33 @@ const PageContent = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-align-items: center;
-justify-content: space-between;
-  
-    p {
+  align-items: center;
+  justify-content: space-between;
+
+  p {
     color: ${Colors.white};
     font-size: 6rem;
     text-align: center;
-      font-family: 'Tanker';
-      margin-bottom: 20px;
-    }
+    font-family: 'Tanker';
+    margin-bottom: 20px;
+    z-index: 10;
+    pointer-events: none;
+  }
   
+  button {
+    background-color: ${Colors.white};
+    color: ${Colors.primaryColor};
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 2rem;
+    font-family: 'Tanker';
+    cursor: pointer;
+    z-index: 10;
+    pointer-events: all;
+  
+  }
+
 `;
 
 const Video = styled.video`
@@ -42,53 +61,49 @@ const Video = styled.video`
   filter: grayscale(100%);
   transform: scaleX(-1);
   width: 75%;
-  height: calc(100% - 10rem);
+  height: calc(100% - 12rem);
 `;
+
 const HaircutImage = styled.img`
-  width: 100%;
+  position: absolute;
+  width: 200px; // Vous pouvez ajuster la taille selon vos besoins
   height: auto;
-  opacity: 1;
-  filter: grayscale(100%);
-  object-fit: none;
-  
-  object-position: 52% 35%;
+    top: -50vh;
+  cursor: grab;
+  transition: width 0.5s ease-in-out;
+  z-index: 10;
 `;
 
-const HaircutSlider = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-`;
-
-const Button = styled.button`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 2rem;
-  color: white;
-`;
-
-const PrevButton = styled(Button)`
-  left: 1rem;
-`;
-
-const NextButton = styled(Button)`
-  right: 1rem;
+const ReturnLink = styled.a`
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-family: 'Tanker';
+    font-size: 50px;
+    color: ${Colors.white};
+    text-align: center;
+    z-index: 3;
+    cursor: pointer;
 `;
 
 
-
-
+gsap.registerPlugin(Draggable);
 export default function GetYourMullet() {
     const videoRef = useRef(null);
-    const sliderRef = useRef(null);
-    const haircuts = ['/images/mullet-2.png']; // Replace with your actual paths
+    const hairCutRef = useRef(null);
+    const animationRef = useRef(null);
+    const canvasRef = useRef(null);
+    const haircuts = ['/images/mullet-2.png', "/images/mullet-3.png"];
+
+    const takePhoto = () => {
+        html2canvas(document.body).then(canvas => {
+            const dataUrl = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = 'screenshot.png';
+            link.click();
+        });
+    };
 
     useEffect(() => {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -101,43 +116,71 @@ export default function GetYourMullet() {
                 .catch(err => console.error(err));
         }
 
+        haircuts.forEach((haircut, index) => {
+            const randomX = Math.random() * 70 - 35;
+            gsap.fromTo(`.haircut-${index}`, {
+                x: `${randomX}vw`,
+            }, { y: '125vh', ease: 'power1.inOut', duration:2});
+        });
 
-        if (sliderRef.current) {
+        // Add drag and drop functionality
+        const haircutsElements = document.querySelectorAll('.haircut');
+        haircutsElements.forEach(haircut => {
+            haircut.draggable = true;
             gsap.registerPlugin(Draggable);
-            Draggable.create(sliderRef.current, {
-                type: 'x',
-                edgeResistance: 0.5,
-                bounds: sliderRef.current.parentNode,
-                throwProps: true
-            });
-        }
-    }, []);
-    const prevSlide = () => {
-        gsap.to(sliderRef.current, {
-            x: '+=100%',
-            duration: 1,
-            ease: 'power1.out'
-        });
-    };
+            Draggable.create(haircut, {
+                type: 'x,y',
+                bounds: window, // Change bounds to window
+                onDrag: function () {
+                    gsap.to(this.target, { rotation: this.x / 10, duration: 0.5 });
+                    gsap.to(animationRef.current, { x: this.x, y: this.y, duration: 0.5 })
+                },
+                onDragEnd: function () {
+                    gsap.to(this.target, { rotation: 0, duration: 0.5 });
+                    const haircutRect = haircut.getBoundingClientRect();
+                    const lottieAnim = document.querySelector('.lottie-player');
+                    lottieAnim.style.left = `${haircutRect.left - haircutRect.width / 2}px`;
+                    lottieAnim.style.top = `${haircutRect.top - haircutRect.height / 2}px`;
 
-    const nextSlide = () => {
-        gsap.to(sliderRef.current, {
-            x: '-=100%',
-            duration: 1,
-            ease: 'power1.out'
+                    animationRef.current.play(); // Play the Lottie animation
+                },
+            });
+
+            // Add right click event listener to increase width
+            haircut.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                const currentWidth = parseFloat(getComputedStyle(haircut).width);
+                haircut.style.width = `${currentWidth * 1.1}px`; // Increase width by 10%
+            });
+
+            haircut.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rotation = gsap.getProperty(haircut, 'rotation');
+                gsap.to(haircut, { rotation: rotation + e.deltaY / 10, duration: 0.1 });
+            });
+
+
+
         });
-    };
+
+    }, []);
 
     return <main>
         <PageContent>
+            <ReturnLink href="/">Return</ReturnLink>
             <Video ref={videoRef} autoPlay />
-            <HaircutSlider ref={sliderRef}>
-                {haircuts.map((haircut, index) => (
-                    <HaircutImage key={index} src={haircut} alt={`Haircut ${index + 1}`} />
-                ))}
-            </HaircutSlider>
-            <PrevButton onClick={prevSlide}>Prev</PrevButton>
-            <NextButton onClick={nextSlide}>Next</NextButton>
+            {haircuts.map((haircut, index) => (
+                <HaircutImage key={index} ref={hairCutRef} className={`haircut haircut-${index}`} src={haircut} alt={`Haircut ${index + 1}`} />
+            ))}
+            <Player
+                ref={animationRef}
+                autoplay={false}
+                loop={false}
+                className={'lottie-player'}
+                src="/animations/stick-animation.json"
+                style={{ height: '350px', width: '350px', position: 'absolute', zIndex: 0 }}/>
+            <button onClick={takePhoto}>Take Photo</button>
+            <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
             <p>Get your own mullet !</p>
         </PageContent>
     </main>;
