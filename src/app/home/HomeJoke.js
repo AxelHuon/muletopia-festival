@@ -13,7 +13,7 @@ import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 
-export default function Home2() {
+export default function HomeJoke() {
   const title1ref = useRef();
   const title2ref = useRef();
   const buble1 = useRef();
@@ -47,7 +47,7 @@ export default function Home2() {
             duration: 2,
             ease: 'back',
             stagger: 0.1,
-            delay: 0.7,
+            delay: 1,
           });
           gsap.fromTo(
             buble1.current,
@@ -56,7 +56,7 @@ export default function Home2() {
               opacity: 1,
               duration: 0.5,
               scale: '1.05',
-              delay: 0.5,
+              delay: 2,
             }
           );
           gsap.fromTo(
@@ -66,7 +66,7 @@ export default function Home2() {
               opacity: 1,
               duration: 0.5,
               scale: '1.05',
-              delay: 1,
+              delay: 2.5,
             }
           );
           gsap.fromTo(
@@ -76,7 +76,7 @@ export default function Home2() {
               opacity: 1,
               duration: 0.5,
               scale: '1.05',
-              delay: 1.5,
+              delay: 3,
             }
           );
         },

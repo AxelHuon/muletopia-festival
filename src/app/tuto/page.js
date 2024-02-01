@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import Return from '@/app/components/return';
 import backgroundImg from '../../../public/images/background-tuto.png';
 import swing from '../../../public/images/swing.png';
 import line from '../../../public/images/line.png';
@@ -14,7 +15,6 @@ import star3 from '../../../public/images/star3.png';
 import star4 from '../../../public/images/star4.png';
 
 import Image from 'next/image';
-import ButtonTuto from './buttonTuto';
 import styled from 'styled-components';
 import { Colors } from '@/theme/Colors';
 
@@ -34,18 +34,12 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 32px;
   margin-bottom: 50px;
   font-family: 'Tanker';
-  color: ${Colors.black};
 `;
 
 const Description = styled.p`
-  font-size: 20px;
   font-family: 'Tanker';
-  margin-top: 10px;
-  margin-bottom: 100px;
-  width: 50%;
   color: black;
 `;
 
@@ -141,18 +135,9 @@ const Tuto = () => {
 
   return (
     <main>
-      <Container>
-        <ButtonContainer>
-          <ButtonTuto />
-        </ButtonContainer>
-        <Image
-          src={backgroundImg}
-          alt="Background"
-          layout="fill"
-          objectFit="cover"
-          style={{ zIndex: -1 }}
-        />
-        <FloatingImage top={100} left={100}>
+      <Container className='bg-home_2'>
+        <Return/>
+        <FloatingImage top={200} left={100}>
           <Image
             ref={floatingAssetRef}
             alt="swing"
@@ -163,7 +148,7 @@ const Tuto = () => {
             objectFit="cover"
           />
         </FloatingImage>
-        <FloatingImage top={400} left={200}>
+        <FloatingImage top={500} left={200}>
           <Image
             ref={floatingAssetRef2}
             alt="line"
@@ -185,7 +170,7 @@ const Tuto = () => {
             objectFit="cover"
           />
         </FloatingImage>
-        <FloatingImage top={150} left={1000}>
+        <FloatingImage top={250} left={1000}>
           <Image
             ref={floatingAssetRef4}
             alt="mouth"
@@ -196,17 +181,7 @@ const Tuto = () => {
             objectFit="cover"
           />
         </FloatingImage>
-        <ContainerImageText>
-          <Image
-            src={bulleTuto}
-            alt="bulleTuto"
-            width={800}
-            height={100}
-            layout="fixed"
-            objectFit="cover"
-          />
-          <Title>Mullet Haircut Tutorials</Title>
-        </ContainerImageText>
+          <Title className='text-6xl text-white mt-10'>Mullet Haircut Tutorials</Title>
         <FloatingImage top={460} left={710}>
           <Image
             src={star1}
@@ -247,10 +222,20 @@ const Tuto = () => {
             objectFit="cover"
           />
         </FloatingImage>
-        <Description>
+          <ContainerImageText className='relative'>
+          <Image
+            src={bulleTuto}
+            alt="bulleTuto"
+            width={800}
+            height={100}
+            layout="fixed"
+            objectFit="cover"
+          />
+        <Description className='absolute text-2xl w-[700px] top-14'>
           Want to master the art of the mullet haircut? Explore practical
           tutorials filled with professional advice to achieve the perfect cut.
         </Description>
+        </ContainerImageText>
         <VideosContainer>
           <Row>
             {tutorialVideos.slice(0, 2).map((videoId, index) => (

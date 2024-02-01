@@ -19,7 +19,7 @@ import { useGSAP } from '@gsap/react';
 import { SplitText } from 'gsap/SplitText';
 import gsap from 'gsap';
 gsap.registerPlugin(SplitText);
-export default function Home1() {
+export default function HomeHero() {
   const descriptionText = useRef();
   const image1 = useRef();
 
@@ -58,7 +58,7 @@ export default function Home1() {
   );
 
   return (
-    <div className=" container-global flex relative h-[100vh] w-full bg-home bg-repeat bg-cover pb-[100px]">
+    <div className=" container-global flex relative h-[100vh] w-full bg-home bg-repeat bg-cover pb-6">
       {/* Logo */}
       <Image
         src={logoImg}
@@ -68,7 +68,7 @@ export default function Home1() {
           position: 'absolute',
           top: '10%',
           left: '10%',
-          transform: 'translate(-50%, -50%)',
+          transform: 'translate(-40%, -50%)',
         }}
       />
 
@@ -100,7 +100,7 @@ export default function Home1() {
         <p className="absolute text-4xl font-tanker top-5">SHOP</p>
       </div>
 
-      <Link href="tuto/" className="home-link">
+      <Link href="/tuto" className="home-link">
         <Image
           src={scissorImg}
           alt="tuto"
@@ -128,7 +128,7 @@ export default function Home1() {
         <p className="absolute text-4xl font-tanker top-5">TUTORIALS</p>
       </div>
 
-      <Link href="photo-gallery/" className="home-link">
+      <Link href="/get-your-mullet" className="home-link">
         <Image
           src={cameraImg}
           alt="photo-gallery"
@@ -153,12 +153,10 @@ export default function Home1() {
             position: 'absolute',
           }}
         />
-        <p className="absolute text-4xl font-tanker top-5 uppercase">
-          PHOTO GALLERY
-        </p>
+        <p className="absolute text-4xl font-tanker top-5 uppercase">PHOTO</p>
       </div>
 
-      <Link href="contest/" className="home-link">
+      <Link href="" className="home-link">
         <Image
           src={coupeImg}
           alt="contest"

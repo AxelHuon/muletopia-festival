@@ -12,7 +12,7 @@ import anneauxImg from '../../../public/images/home/anneaux.svg';
 import galaxyImg from '../../../public/images/home/galaxy.svg';
 import eclairImg from '../../../public/images/home/eclair.svg';
 
-export default function Home3() {
+export default function HomeShop() {
   useEffect(() => {
     const teeshirts = document.querySelectorAll('.teeshirt');
     teeshirts.forEach((teeshirt, index) => {
