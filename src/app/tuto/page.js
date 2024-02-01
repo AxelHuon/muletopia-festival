@@ -15,8 +15,70 @@ import star4 from '../../../public/images/star4.png';
 
 import Image from 'next/image';
 import ButtonTuto from './buttonTuto';
+import styled from 'styled-components';
 
-export default function Tuto() {
+const Container = styled.div`
+  position: relative;
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  justify-content: center;
+  background-color: #f4b64b;
+  background-size: cover;
+  mix-blend-mode: multiply;
+`;
+
+const Title = styled.h1`
+  font-size: 32px;
+  margin-bottom: 50px;
+  color: white;
+  font-family: 'Tanker';
+`;
+
+const Description = styled.p`
+  font-size: 20px;
+  font-family: Tanker;
+  margin-top: 10px;
+  margin-bottom: 100px;
+  width: 50%;
+  color: black;
+`;
+
+const VideosContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Row = styled.div`
+  display: flex;
+  margin-bottom: 50px;
+`;
+
+const Video = styled.div`
+  width: 350px;
+  height: 207px;
+  margin: 0 25px;
+`;
+
+const FloatingImage = styled.div`
+  position: absolute;
+  top: ${(props) => props.top}px;
+  left: ${(props) => props.left}px;
+  z-index: -1;
+`;
+
+const ButtonContainer = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+`;
+
+const Tuto = () => {
   const tutorialVideos = [
     'Zyb8s1YM7d4',
     'QxcqUWwpkq8',
@@ -28,53 +90,6 @@ export default function Tuto() {
   const floatingAssetRef2 = useRef(null);
   const floatingAssetRef3 = useRef(null);
   const floatingAssetRef4 = useRef(null);
-
-  const containerStyle = {
-    position: 'relative',
-    textAlign: 'center',
-    padding: '20px',
-    fontFamily: 'Arial, sans-serif',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    minHeight: '100vh',
-    justifyContent: 'center',
-    backgroundColor: '#F4B64B',
-    backgroundSize: 'cover',
-    mixBlendMode: 'multiply',
-  };
-
-  const titleStyle = {
-    fontSize: '32px',
-    marginBottom: '50px',
-    color: 'white',
-  };
-
-  const descriptionStyle = {
-    fontSize: '20px',
-    fontFamily: 'Tanker',
-    marginTop: '10px',
-    marginBottom: '100px',
-    width: '50%',
-    color: 'black',
-  };
-
-  const videosContainerStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  };
-
-  const rowStyle = {
-    display: 'flex',
-    marginBottom: '50px',
-  };
-
-  const videoStyle = {
-    width: '350px',
-    height: '207px',
-    margin: '0 25px',
-  };
 
   useEffect(() => {
     document.body.style.overflowX = 'hidden';
@@ -114,16 +129,10 @@ export default function Tuto() {
 
   return (
     <main>
-      <div style={containerStyle}>
-        <ButtonTuto
-          style={{
-            position: 'absolute',
-            top: '20px',
-            left: '20px',
-            width: '50px',
-            height: '50px',
-          }}
-        />
+      <Container>
+        <ButtonContainer>
+          <ButtonTuto />
+        </ButtonContainer>
         <Image
           src={backgroundImg}
           alt="Background"
@@ -131,14 +140,7 @@ export default function Tuto() {
           objectFit="cover"
           style={{ zIndex: -1 }}
         />
-        <div
-          style={{
-            position: 'absolute',
-            top: '100px',
-            left: '100px',
-            zIndex: -1,
-          }}
-        >
+        <FloatingImage top={100} left={100}>
           <Image
             ref={floatingAssetRef}
             alt="swing"
@@ -148,15 +150,8 @@ export default function Tuto() {
             layout="fixed"
             objectFit="cover"
           />
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            top: '400px',
-            left: '200px',
-            zIndex: -1,
-          }}
-        >
+        </FloatingImage>
+        <FloatingImage top={400} left={200}>
           <Image
             ref={floatingAssetRef2}
             alt="line"
@@ -166,15 +161,8 @@ export default function Tuto() {
             layout="fixed"
             objectFit="cover"
           />
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            top: '600px',
-            left: '1300px',
-            zIndex: -1,
-          }}
-        >
+        </FloatingImage>
+        <FloatingImage top={600} left={1300}>
           <Image
             ref={floatingAssetRef3}
             alt="line2"
@@ -184,15 +172,8 @@ export default function Tuto() {
             layout="fixed"
             objectFit="cover"
           />
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            top: '150px',
-            left: '1000px',
-            zIndex: -1,
-          }}
-        >
+        </FloatingImage>
+        <FloatingImage top={150} left={1000}>
           <Image
             ref={floatingAssetRef4}
             alt="mouth"
@@ -202,15 +183,8 @@ export default function Tuto() {
             layout="fixed"
             objectFit="cover"
           />
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            top: '80px',
-            left: '370px',
-            zIndex: -1,
-          }}
-        >
+        </FloatingImage>
+        <FloatingImage top={80} left={370}>
           <Image
             src={bulleTuto}
             alt="bulleTuto"
@@ -219,15 +193,8 @@ export default function Tuto() {
             layout="fixed"
             objectFit="cover"
           />
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            top: '460px',
-            left: '710px',
-            zIndex: 1,
-          }}
-        >
+        </FloatingImage>
+        <FloatingImage top={460} left={710}>
           <Image
             src={star1}
             alt="star1"
@@ -236,15 +203,8 @@ export default function Tuto() {
             layout="fixed"
             objectFit="cover"
           />
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            top: '720px',
-            left: '710px',
-            zIndex: 1,
-          }}
-        >
+        </FloatingImage>
+        <FloatingImage top={720} left={710}>
           <Image
             src={star2}
             alt="star2"
@@ -253,15 +213,8 @@ export default function Tuto() {
             layout="fixed"
             objectFit="cover"
           />
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            top: '460px',
-            left: '1100px',
-            zIndex: 1,
-          }}
-        >
+        </FloatingImage>
+        <FloatingImage top={460} left={1100}>
           <Image
             src={star3}
             alt="star3"
@@ -270,15 +223,8 @@ export default function Tuto() {
             layout="fixed"
             objectFit="cover"
           />
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            top: '720px',
-            left: '1100px',
-            zIndex: 1,
-          }}
-        >
+        </FloatingImage>
+        <FloatingImage top={720} left={1100}>
           <Image
             src={star4}
             alt="star4"
@@ -287,16 +233,16 @@ export default function Tuto() {
             layout="fixed"
             objectFit="cover"
           />
-        </div>
-        <h1 style={titleStyle}>Mullet Haircut Tutorials</h1>
-        <p style={descriptionStyle}>
+        </FloatingImage>
+        <Title>Mullet Haircut Tutorials</Title>
+        <Description>
           Want to master the art of the mullet haircut? Explore practical
           tutorials filled with professional advice to achieve the perfect cut.
-        </p>
-        <div style={videosContainerStyle}>
-          <div style={rowStyle}>
+        </Description>
+        <VideosContainer>
+          <Row>
             {tutorialVideos.slice(0, 2).map((videoId, index) => (
-              <div key={index} style={videoStyle}>
+              <Video key={index}>
                 <iframe
                   width="350"
                   height="207"
@@ -306,12 +252,12 @@ export default function Tuto() {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
-              </div>
+              </Video>
             ))}
-          </div>
-          <div style={rowStyle}>
+          </Row>
+          <Row>
             {tutorialVideos.slice(2, 4).map((videoId, index) => (
-              <div key={index} style={videoStyle}>
+              <Video key={index}>
                 <iframe
                   width="350"
                   height="207"
@@ -321,11 +267,13 @@ export default function Tuto() {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
-              </div>
+              </Video>
             ))}
-          </div>
-        </div>
-      </div>
+          </Row>
+        </VideosContainer>
+      </Container>
     </main>
   );
-}
+};
+
+export default Tuto;
