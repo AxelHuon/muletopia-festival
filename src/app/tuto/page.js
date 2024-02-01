@@ -33,7 +33,6 @@ export default function Tuto() {
     position: 'relative',
     textAlign: 'center',
     padding: '20px',
-    fontFamily: 'Arial, sans-serif',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
