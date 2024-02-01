@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
@@ -14,18 +14,21 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 
 export default function Home2() {
+  const title1ref = useRef();
+  const title2ref = useRef();
+  const buble1 = useRef();
+  const buble2 = useRef();
+  const buble3 = useRef();
   useGSAP(
     () => {
-      const titles = document.querySelectorAll('.joke-text');
-      const bubbles = document.querySelectorAll('.joke-bubble');
-      const title1Split = new SplitText(titles[0], { type: 'chars' });
-      const title2Split = new SplitText(titles[1], { type: 'chars' });
+      const title1Split = new SplitText(title1ref.current, { type: 'chars' });
+      const title2Split = new SplitText(title2ref.current, { type: 'chars' });
       gsap.set([...title1Split.chars, ...title2Split.chars], {
         opacity: 0,
         y: 50,
       });
       ScrollTrigger.create({
-        trigger: titles[0],
+        trigger: title1ref.current,
         start: 'top 80%',
         end: 'bottom center',
         once: true,
@@ -47,7 +50,7 @@ export default function Home2() {
             delay: 0.7,
           });
           gsap.fromTo(
-            bubbles[0],
+            buble1.current,
             { opacity: 0 },
             {
               opacity: 1,
@@ -57,7 +60,7 @@ export default function Home2() {
             }
           );
           gsap.fromTo(
-            bubbles[1],
+            buble2.current,
             { opacity: 0 },
             {
               opacity: 1,
@@ -67,7 +70,7 @@ export default function Home2() {
             }
           );
           gsap.fromTo(
-            bubbles[2],
+            buble3.current,
             { opacity: 0 },
             {
               opacity: 1,
@@ -79,12 +82,12 @@ export default function Home2() {
         },
       });
     },
-    { scope: '.joke-text' }
+    { scope: title1ref }
   );
   return (
     <div className="flex h-[110vh] pt-20 w-full bg-home_2 overflow-hidden bg-repeat bg-cover relative flex-col items-center justify-center">
       <div className="flex items-center justify-center gap-20">
-        <div className="relative joke-bubble opacity-0">
+        <div ref={buble1} className="relative joke-bubble opacity-0">
           <div className="relative w-[700px] h-[250px] flex items-center justify-center">
             <Image
               src={bubble2Img}
@@ -112,16 +115,22 @@ export default function Home2() {
             }}
           />
         </div>
-        <p className="text-9xl text-white font-tanker joke-text mb-10">
+        <p
+          ref={title1ref}
+          className="text-9xl text-white font-tanker joke-text mb-10"
+        >
           A LIttle
         </p>
       </div>
 
       <div className="flex items-center justify-center gap-20">
-        <p className="text-9xl text-white font-tanker joke-text mb-10">
+        <p
+          ref={title2ref}
+          className="text-9xl text-white font-tanker joke-text mb-10"
+        >
           JOKE ?
         </p>
-        <div className="relative joke-bubble opacity-0">
+        <div ref={buble2} className="relative joke-bubble opacity-0">
           <div className="relative bottom-[-150px] left-[500px]">
             <Image
               src={mouthImg}
@@ -163,7 +172,7 @@ export default function Home2() {
       </div>
 
       <div className="flex items-center justify-center gap-20 mr-[250px]">
-        <div className="relative joke-bubble opacity-0">
+        <div ref={buble3} className="relative joke-bubble opacity-0">
           <div className="relative w-[700px] h-[250px] flex items-center justify-center">
             <Image
               src={bubble2Img}
