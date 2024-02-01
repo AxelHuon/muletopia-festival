@@ -14,9 +14,15 @@ import swingShape from '../../../public/images/home/shape-swing.png';
 import ziczacShape from '../../../public/images/home/shape-ziczac.png';
 import fluwuShape from '../../../public/images/home/shape-fluwu.png';
 import bubbleImg from '../../../public/images/home/bubble-home.png';
-import { useEffect } from 'react';
-
+import { useEffect, useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import { SplitText } from 'gsap/SplitText';
+import gsap from 'gsap';
+gsap.registerPlugin(SplitText);
 export default function Home1() {
+  const descriptionText = useRef();
+  const image1 = useRef();
+
   useEffect(() => {
     // Show title of links
     const links = document.querySelectorAll('.home-link');
@@ -29,8 +35,30 @@ export default function Home1() {
       });
     });
   });
+
+  useGSAP(
+    () => {
+      const descriptionSplit = new SplitText(descriptionText.current, {
+        type: 'words',
+      });
+      gsap.set([...descriptionSplit.words], {
+        opacity: 0,
+        y: 50,
+      });
+      gsap.to(descriptionSplit.words, {
+        opacity: 1,
+        y: 0,
+        duration: 2,
+        ease: 'back',
+        stagger: 0.1,
+        delay: 3,
+      });
+    },
+    { scope: descriptionText }
+  );
+
   return (
-    <div className="flex relative h-[100vh] w-full bg-home bg-repeat bg-cover">
+    <div className=" container-global flex relative h-[100vh] w-full bg-home bg-repeat bg-cover pb-[100px]">
       {/* Logo */}
       <Image
         src={logoImg}
@@ -45,7 +73,7 @@ export default function Home1() {
       />
 
       {/* Img links */}
-      <Link href="shop/" className="home-link">
+      <Link href="shop/" ref={image1} className="home-link">
         <Image
           src={dollarImg}
           alt="shop"
@@ -279,7 +307,10 @@ export default function Home1() {
           right: '30px',
         }}
       />
-      <p className="text-white font-tanker self-end text-center w-full text-6xl p-4">
+      <p
+        ref={descriptionText}
+        className="text-white font-tanker self-end text-center w-full text-6xl p-4"
+      >
         Rock the Mullet Fest: Unleash Your Inner Party in the Back !
       </p>
     </div>
