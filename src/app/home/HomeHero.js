@@ -58,7 +58,7 @@ export default function HomeHero() {
   );
 
   return (
-    <div className=" container-global flex relative h-[100vh] w-full bg-home bg-repeat bg-cover pb-[100px]">
+    <div className=" container-global flex relative h-[100vh] w-full bg-home bg-repeat bg-cover pb-6">
       {/* Logo */}
       <Image
         src={logoImg}
