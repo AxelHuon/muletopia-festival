@@ -203,6 +203,12 @@ export default function TicketingPage() {
         '-=0.6'
       )
       .fromTo(
+        refs.ticket3.current,
+        { y: '150%' },
+        { y: '0%', duration: 1, ease: 'power1.inOut' },
+        '-=0.8'
+      )
+      .fromTo(
         refs.rightDot.current,
         { scale: 6, y: 1000 },
         { scale: 1, y: '-100%', duration: 1, ease: 'power4.out' },

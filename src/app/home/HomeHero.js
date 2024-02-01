@@ -100,7 +100,7 @@ export default function HomeHero() {
         <p className="absolute text-4xl font-tanker top-5">SHOP</p>
       </div>
 
-      <Link href="tuto/" className="home-link">
+      <Link href="/tuto" className="home-link">
         <Image
           src={scissorImg}
           alt="tuto"
@@ -128,7 +128,7 @@ export default function HomeHero() {
         <p className="absolute text-4xl font-tanker top-5">TUTORIALS</p>
       </div>
 
-      <Link href="photo-gallery/" className="home-link">
+      <Link href="/get-your-mullet" className="home-link">
         <Image
           src={cameraImg}
           alt="photo-gallery"
@@ -153,12 +153,10 @@ export default function HomeHero() {
             position: 'absolute',
           }}
         />
-        <p className="absolute text-4xl font-tanker top-5 uppercase">
-          PHOTO GALLERY
-        </p>
+        <p className="absolute text-4xl font-tanker top-5 uppercase">PHOTO</p>
       </div>
 
-      <Link href="contest/" className="home-link">
+      <Link href="" className="home-link">
         <Image
           src={coupeImg}
           alt="contest"
