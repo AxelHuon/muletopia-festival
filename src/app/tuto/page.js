@@ -16,6 +16,7 @@ import star4 from '../../../public/images/star4.png';
 import Image from 'next/image';
 import ButtonTuto from './buttonTuto';
 import styled from 'styled-components';
+import { Colors } from '@/theme/Colors';
 
 const Container = styled.div`
   position: relative;
@@ -35,13 +36,13 @@ const Container = styled.div`
 const Title = styled.h1`
   font-size: 32px;
   margin-bottom: 50px;
-  color: white;
   font-family: 'Tanker';
+  color: ${Colors.black};
 `;
 
 const Description = styled.p`
   font-size: 20px;
-  font-family: Tanker;
+  font-family: 'Tanker';
   margin-top: 10px;
   margin-bottom: 100px;
   width: 50%;
@@ -76,6 +77,17 @@ const ButtonContainer = styled.div`
   position: absolute;
   top: 20px;
   left: 20px;
+  width: 150px;
+  height: 100px;
+`;
+
+const ContainerImageText = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h1 {
+    position: absolute;
+  }
 `;
 
 const Tuto = () => {
@@ -184,7 +196,7 @@ const Tuto = () => {
             objectFit="cover"
           />
         </FloatingImage>
-        <FloatingImage top={80} left={370}>
+        <ContainerImageText>
           <Image
             src={bulleTuto}
             alt="bulleTuto"
@@ -193,7 +205,8 @@ const Tuto = () => {
             layout="fixed"
             objectFit="cover"
           />
-        </FloatingImage>
+          <Title>Mullet Haircut Tutorials</Title>
+        </ContainerImageText>
         <FloatingImage top={460} left={710}>
           <Image
             src={star1}
@@ -234,7 +247,6 @@ const Tuto = () => {
             objectFit="cover"
           />
         </FloatingImage>
-        <Title>Mullet Haircut Tutorials</Title>
         <Description>
           Want to master the art of the mullet haircut? Explore practical
           tutorials filled with professional advice to achieve the perfect cut.
