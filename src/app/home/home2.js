@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import Image from 'next/image';
 import { SplitText } from 'gsap/SplitText';
 import bubble1Img from '../../../public/images/home/bubble-joke.png';
@@ -13,7 +12,6 @@ import mouthImg from '../../../public/images/home/mouth.svg';
 import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
-gsap.registerPlugin(ScrollSmoother);
 
 export default function Home2() {
   useGSAP(
